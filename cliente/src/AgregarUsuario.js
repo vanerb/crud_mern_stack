@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import uniqid from 'uniqid';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function AgregarUsuario(){
@@ -9,6 +10,7 @@ function AgregarUsuario(){
     const [nombre, setNombre] = useState('');
     const [email, setEmail] = useState('');
     const [telefono, setTelefono] = useState('');
+    const navegar = useNavigate();
 
 
     function agregarUsuario(){
@@ -25,8 +27,7 @@ function AgregarUsuario(){
         //console.log(usuario);
         axios.post('/api/usuario/agregarusuario', usuario)
         .then(res=>{
-            console.log(usuario);
-            alert(res.data);
+            navegar("/");
         }).then(error=>{
             console.log(error);
         });
